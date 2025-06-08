@@ -82,8 +82,10 @@ This file (`agent.md`) is the authoritative oracle guiding Codex-based agents th
 ### Stage 8: **Salphaseion decryption**
 - Interpret `abba/b` sections → binary map to “matrixsumlist” & “enter”
 - Identify SHA256 glue‑separators “shabef” → a=1…z=26
-- Extract hexadecimal ASCII hints: “lastwordsbeforearchichoice” & “thispassword”
-- AES-decode blob using extracted password → reveal final multi‑cipher labyrinth of 23 ciphers, 16 encryptions, 7 passwords.
+- Extract hexadecimal ASCII hints: “lastwordsbeforearchichoice” & “thispassword”.
+- Reassemble the AES blob (remove spaces, add newline), hash `thispassword` with SHA256 and use that hex as the OpenSSL passphrase:
+  `openssl enc -aes-256-cbc -d -a -in blob.txt -pass pass:<SHA256>`
+- The plaintext unveils the final multi‑cipher labyrinth (23 ciphers, 16 encryptions, 7 passwords).
 
 ### Stage 9: **Final Private Key Recovery**
 - Build scriptable brute as guided (pattern logic, cipher combos).
