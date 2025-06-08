@@ -1,6 +1,6 @@
 # Agents Reference & Oracle for GSMG.IO 5 BTC Puzzle 🧩
 
-This file (`agents.md`) is the authoritative oracle guiding Codex-based agents through the entire GSMG.IO 5 BTC puzzle. It includes:
+This file (`agent.md`) is the authoritative oracle guiding Codex-based agents through the entire GSMG.IO 5 BTC puzzle. It includes:
 
 - ✅ Known info (hints, steps, transformations)
 - 🎯 Goals at each stage
