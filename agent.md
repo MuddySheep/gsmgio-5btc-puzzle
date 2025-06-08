@@ -117,5 +117,5 @@ SPLIT per‑8 bits → ASCII → "gsmg.io/theseedisplanted"
 
 > // Stage 3: SHA + AES decode
 HASH("causality") = eb3efb…      // from hint
-`openssl enc -aes-256-cbc -d -a -in phase2.txt -pass pass:eb3efb…`
+`openssl enc -aes-256-cbc -d -md sha256 -a -in phase2.txt -pass pass:eb3efb…`
 → decrypted JSON / text.
