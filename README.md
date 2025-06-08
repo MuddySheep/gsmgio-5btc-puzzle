@@ -391,6 +391,13 @@ Through some trial and error, we find that these need to be shifted to base 16, 
 2. [thispassword](https://gchq.github.io/CyberChef/#recipe=Remove_whitespace(true,true,true,true,true,false)Substitute('abcdefghio','1234567890')To_Base(16)From_Hex('Auto')&input=IGMgZiBvIGIgZiBkIGggZyBkIG8gYiBkIGcgbyBvIGkgaSBnIGQgbyBjIGQgYSBvIG8gZiBpIGQgaA)
 
 ### AES Blob
-The following follows the same formatting as previous openssl base64-encoded AES blobs that we encounted in previous stages
-> U 2 F s d G V k X 1 8 6 t Y U 0 h V J B X X U n B U O 7 C 0 + X 4 K U W n W k C v o Z S x b R D 3 w N s G W V H e f v d r d 9 z
-> Q v X 0 t 8 v 3 j P B 4 o k p s p x e b R i 6 s E 1 B M l 5 H I 8 R k u + K e j U q T v d W O X 6 n Q j S p e p X w G u N / j J
+The following follows the same formatting as previous OpenSSL base64-encoded AES blobs encountered in earlier stages. To decode it:
+1. Remove all spaces so the blob becomes one continuous Base64 string:
+   `U2FsdGVkX186tYU0hVJBXXUnBUO7C0+X4KUWnWkCvoZSxbRD3wNsGWVHefvdrd9zQvX0t8v3jPB4okpspxebRi6sE1BMl5HI8Rku+KejUqTvdWOX6nQjSpepXwGuN/jJ`
+2. Save the result to a file (`blob.txt`) with a trailing newline so OpenSSL can read it correctly.
+3. Compute `SHA256("thispassword")` to obtain `74c1d7592daf4f89b0a7ba5e368bb59cc9e19c6a4ebb7f33cd8ccf8f3edacac0`.
+4. Run:
+   ```bash
+   openssl enc -aes-256-cbc -d -a -in blob.txt \
+     -pass pass:74c1d7592daf4f89b0a7ba5e368bb59cc9e19c6a4ebb7f33cd8ccf8f3edacac0
+```
