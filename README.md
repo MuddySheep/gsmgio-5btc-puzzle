@@ -25,6 +25,7 @@ If you find this useful, please donate BTC at [1JK27jtvE1wS4VG9k7Zpo8wBufMbYwy3r
 Useful OpenSSL flags:
 -d decrypts data
 -a tells OpenSSL that the encrypted data is in base64
+-md sha256 uses SHA-256 for key derivation (required for these blobs)
 -in <filename> specifies the file to decrypt
 -out <filename> specifies the file to put the decrypted data in
 ```
@@ -106,7 +107,7 @@ SHA256(causality) = eb3efb5151e6255994711fe8f2264427ceeebf88109e1d7fad5b0a8b6d07
 
 To decypher the text, use openssl. Copy the encrypted text into phase2.txt, then run:
 ```
-openssl enc -aes-256-cbc -d -a -in phase2.txt -pass pass:eb3efb5151e6255994711fe8f2264427ceeebf88109e1d7fad5b0a8b6d07e5bf
+openssl enc -aes-256-cbc -d -md sha256 -a -in phase2.txt -pass pass:eb3efb5151e6255994711fe8f2264427ceeebf88109e1d7fad5b0a8b6d07e5bf
 ```
 Decryption result:
 ```
@@ -192,7 +193,7 @@ Concatenate them all and perform SHA256.
 SHA256(causalitySafenetLunaHSM111100x736B6E616220726F662074756F6C69616220646E6F63657320666F206B6E697262206E6F20726F6C6C65636E61684320393030322F6E614A2F33302073656D695420656854B5KR/1r5B/2R5/2b1p1p1/2P1k1P1/1p2P2p/1P2P2P/3N1N2 b - - 0 1) = 1a57c572caf3cf722e41f5f9cf99ffacff06728a43032dd44c481c77d2ec30d5
 
 ```
-openssl enc -aes-256-cbc -d -a -in phase3.txt -pass pass:1a57c572caf3cf722e41f5f9cf99ffacff06728a43032dd44c481c77d2ec30d5
+openssl enc -aes-256-cbc -d -md sha256 -a -in phase3.txt -pass pass:1a57c572caf3cf722e41f5f9cf99ffacff06728a43032dd44c481c77d2ec30d5
 ```
 
 Decryption result:
@@ -267,7 +268,7 @@ SHA256(jacquefrescogiveitjustonesecondheisenbergsuncertaintyprinciple) = 250f377
 
 To decypher this Phase 3.2 text, use SHA256 again:
 ```
-openssl enc -aes-256-cbc -d -a -in phase3.2.txt -pass pass:250f37726d6862939f723edc4f993fde9d33c6004aab4f2203d9ee489d61ce4c
+openssl enc -aes-256-cbc -d -md sha256 -a -in phase3.2.txt -pass pass:250f37726d6862939f723edc4f993fde9d33c6004aab4f2203d9ee489d61ce4c
 ```
 
 The result of decryption:
